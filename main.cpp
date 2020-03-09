@@ -7,7 +7,7 @@ using namespace std;
 
 void initializeResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
 void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
-
+void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
 int main() {
 
     vector<string> teamName;
@@ -16,6 +16,7 @@ int main() {
 
     initializeResults(teamName, teamAmount, teamResults);
     sortTeams(teamName, teamAmount, teamResults);
+    noteResults(teamName, teamAmount, teamResults);
     return 0;
 }
 
@@ -84,4 +85,11 @@ void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results) 
     }
 }
 
-void ()
+void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results){
+    fstream outFile;
+    outFile.open(R"(C:\Users\alekz29\Documents\GitHub\OP_LR1\results.csv)");
+    if (!outFile.is_open()) cout << "It is not open" << endl;
+    for(int i=0; i<teams; i++){
+        outFile<<nameOfTheTeam[i]<<','<<results[i]<<endl;
+    }
+}
