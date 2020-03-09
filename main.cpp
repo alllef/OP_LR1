@@ -2,14 +2,20 @@
 #include <fstream>
 #include <vector>
 #include<string>
+#include <filesystem>
+#include <Windows.h>
 
 using namespace std;
 
 void initializeResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
-void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
-void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
-int main() {
 
+void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
+
+void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results);
+
+void makeMenu(vector<string> &name, int &number);
+int main() {
+    vector<string> fileName;
     vector<string> teamName;
     int teamAmount = 0;
     vector<int> teamResults;
@@ -17,6 +23,7 @@ int main() {
     initializeResults(teamName, teamAmount, teamResults);
     sortTeams(teamName, teamAmount, teamResults);
     noteResults(teamName, teamAmount, teamResults);
+
     return 0;
 }
 
@@ -29,7 +36,7 @@ void initializeResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &r
     char c = 0;
     string teamName;
 
-    inFile.open(R"(C:\Users\alekz29\Documents\GitHub\OP_LR1\premier_league1.csv)");
+    inFile.open();
     if (!inFile.is_open()) cout << "It is not open" << endl;
 
     inFile >> teams;
@@ -71,7 +78,7 @@ void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results) 
     int result;
 
     for (int i = 0; i < teams; i++) {
-        for (int j = 0; j < teams-1; j++) {
+        for (int j = 0; j < teams - 1; j++) {
             if (results[j] > results[j + 1]) {
                 result = results[j];
                 results[j] = results[j + 1];
@@ -85,11 +92,22 @@ void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results) 
     }
 }
 
-void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results){
+void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results) {
     fstream outFile;
     outFile.open(R"(C:\Users\alekz29\Documents\GitHub\OP_LR1\results.csv)");
     if (!outFile.is_open()) cout << "It is not open" << endl;
-    for(int i=0; i<teams; i++){
-        outFile<<nameOfTheTeam[i]<<','<<results[i]<<endl;
+    for (int i = 0; i < teams; i++) {
+        outFile << nameOfTheTeam[i] << ',' << results[i] << endl;
+    }
+}
+
+void makeMenu(vector<string> &name, int &number) {
+    string fileName;
+    cout << "Введите количество файлов:\n";
+    cin >> number;
+    for (int i = 0; i < number; i++) {
+        cout<<"Введите полное название файла:\n";
+        cin>>fileName;
+        name.push_back(fileName);
     }
 }
