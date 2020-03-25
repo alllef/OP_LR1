@@ -29,7 +29,7 @@ void initializeResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &r
     char c = 0;
     string teamName;
 
-    inFile.open(R"(C:\Users\alekz29\Documents\GitHub\OP_LR1\premier_league1.csv)");
+    inFile.open("premier_league1.csv");
     if (!inFile.is_open()) cout << "It is not open" << endl;
 
     inFile >> teams;
@@ -87,7 +87,7 @@ void sortTeams(vector<string> &nameOfTheTeam, int &teams, vector<int> &results) 
 
 void noteResults(vector<string> &nameOfTheTeam, int &teams, vector<int> &results){
     fstream outFile;
-    outFile.open(R"(C:\Users\alekz29\Documents\GitHub\OP_LR1\results.csv)");
+    outFile.open("results.csv");
     if (!outFile.is_open()) cout << "It is not open" << endl;
     for(int i=0; i<teams; i++){
         outFile<<nameOfTheTeam[i]<<','<<results[i]<<endl;
