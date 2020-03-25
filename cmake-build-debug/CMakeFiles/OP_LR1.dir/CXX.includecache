@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/alekz29/Documents/GitHub/OP_LR1_2/OP_LR1/main.cpp
+iostream
+-
+fstream
+-
+vector
+-
+string
+-
+
